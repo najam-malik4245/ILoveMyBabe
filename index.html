@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For My Favorite Person ❤️</title>
+  <link rel="stylesheet" href="style.css" />
+ <style>
+  /* 1. The Opening Pop-up Styles */
+  #entrance-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #fff0f3;
+    display: flex; justify-content: center; align-items: center;
+    z-index: 9999; 
+    transition: opacity 0.8s ease, visibility 0.8s;
+  }
+  
+  .entrance-card {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 30px;
+    box-shadow: 0 20px 50px rgba(255, 77, 109, 0.2);
+    max-width: 90%;
+    width: 400px;
+  }
+
+  .entrance-card h2 {
+    color: #ff4d6d;
+    font-family: 'Georgia', serif;
+    margin-bottom: 10px;
+  }
+
+  .envelope-icon {
+    font-size: 50px;
+    display: block;
+    margin-bottom: 15px;
+    animation: float 2s infinite ease-in-out;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .blur-content {
+    filter: blur(15px);
+    transition: filter 1s ease;
+  }
+
+  .hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  /* 💕 Romantic Counter Styling */
+  .miniValue {
+    font-size: 24px;
+    font-weight: 600;
+    color: #ff4d6d;
+    letter-spacing: 1px;
+  }
+
+</style>
+</head>
+<body>
+
+  <div id="entrance-overlay">
+    <div class="entrance-card">
+      <span class="envelope-icon">💌</span>
+      <h2>A Letter for You</h2>
+      <p style="color: #666; margin-bottom: 25px; line-height: 1.5;">
+        193 days of knowing you, and I still fall for you every single day. <br>
+        <b>Click below to see why you're my favorite...</b>
+      </p>
+      <button class="btn" onclick="unlockSite()">Open the Letter</button>
+    </div>
+  </div>
+
+  <div id="main-content" class="blur-content">
+    <div class="hearts" aria-hidden="true"></div>
+
+    <main class="wrap">
+      <header class="hero">
+        <p class="tag">A tiny website for you 💌</p>
+        <h1>Hi <span class="accent">Babe</span>,<br />I made this for you ❤️</h1>
+        <p class="sub">
+          You make my days softer, brighter, and better. This is my little way of saying:
+          I’m lucky to have you.
+        </p>
+
+        <div class="ctaRow">
+          <a class="btn" href="#reasons">Open the Love Note</a>
+          <a class="btn ghost" href="#gallery">The Smile I Fell For</a>
+        </div>
+
+        <div class="card mini">
+          <div>
+            <p class="miniTitle">Days of Loving You</p>
+            <p class="miniValue" id="love-counter">Loading…</p>
+          </div>
+          <div class="miniRight">
+            <p class="miniTitle">From</p>
+            <p class="miniValue">Malik 🤍</p>
+          </div>
+        </div>
+      </header>
+
+      <section id="reasons" class="card">
+        <h2>10 Reasons I Love You</h2>
+        <ul class="list">
+          <li>I feel safe with you, even from miles away.</li>
+          <li>You listen to me properly and I trust you fully.</li>
+          <li>You understand me without judging me.</li>
+          <li>You support me, even on messy days.</li>
+          <li>You’re my favorite person to talk to.</li>
+          <li>You’re beautiful inside and out.</li>
+          <li>You make me want to be better.</li>
+          <li>You’re my peace.</li>
+          <li>You feel like home.</li>
+          <li>Because it’s you — and I wouldn’t trade that for anything.</li>
+        </ul>
+      </section>
+
+      <section id="gallery" class="card">
+        <h2>The Girl I’m Lucky To Love 💕</h2>
+        <div class="grid">
+          <figure class="shot">
+            <img src="her1.jpg" alt="Your Smile">
+            <figcaption>Your Smile ❤️</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="her2.jpeg" alt="My Favorite Girl">
+            <figcaption>My Favorite Girl 😊</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="her3.jpeg" alt="The Face That Makes My Day">
+            <figcaption>The Face That Makes My Day 🤍</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>A Note For You</h2>
+        <p class="letter">
+          Dear <b>Babe</b>,<br><br>
+          I don’t need a special day to love you — but I’ll take any excuse to remind you.
+          Thank you for being you. I’m proud of you, I’m grateful for you,
+          and I can’t wait to make more memories with you.<br><br>
+          Always yours,<br>
+          <b>Malik</b> ❤️
+        </p>
+
+        <button class="btn" id="surpriseBtn">Tap for a Surprise ✨</button>
+        <div class="popup" id="popup" role="dialog" aria-modal="true" aria-hidden="true">
+          <div class="popupInner">
+            <p class="big">I love you<br><span class="accent">so</span> much 💞</p>
+            <p class="muted">Now come get your hug.</p>
+            <button class="btn ghost" id="closeBtn">Close</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p>Made with ❤️ by <b>Malik</b></p>
+      </footer>
+    </main>
+  </div>
+
+<script>
+  function unlockSite() {
+    const overlay = document.getElementById("entrance-overlay");
+    const content = document.getElementById("main-content");
+    overlay.classList.add("hidden"); 
+    content.classList.remove("blur-content"); 
+  }
+
+  /* ===== Romantic Counter ===== */
+
+// Real start date of your relationship
+const anniversary = new Date("August 6, 2025 00:00:00"); 
+
+  const counterEl = document.getElementById("love-counter");
+
+  function updateCounter() {
+    const current = new Date();
+    const diff = current - anniversary;
+
+    const totalSeconds = Math.floor(diff / 1000);
+
+    const d = Math.floor(totalSeconds / (60 * 60 * 24));
+    const h = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+    const m = Math.floor((totalSeconds % (60 * 60)) / 60);
+    const s = totalSeconds % 60;
+
+    counterEl.innerHTML =
+      d + "d " +
+      h + "h " +
+      m + "m " +
+      s + "s 💕";
+  }
+
+  updateCounter();
+  setInterval(updateCounter, 1000);
+
+  /* ===== Popup Logic ===== */
+
+  const popup = document.getElementById("popup");
+  const surpriseBtn = document.getElementById("surpriseBtn");
+  const closeBtn = document.getElementById("closeBtn");
+
+  if (surpriseBtn) {
+    surpriseBtn.onclick = () => {
+      popup.setAttribute("aria-hidden", "false");
+      popup.classList.add("show");
+    };
+  }
+
+  if (closeBtn) {
+    closeBtn.onclick = () => {
+      popup.setAttribute("aria-hidden", "true");
+      popup.classList.remove("show");
+    };
+  }
+
+  /* ===== Floating Hearts ===== */
+
+  const heartsContainer = document.querySelector(".hearts");
+  const emojis = ["💗","💖","💘","💝","💞"];
+
+  setInterval(() => {
+    const s = document.createElement("span");
+    s.className = "heart";
+    s.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+    s.style.left = Math.random()*100 + "vw";
+    s.style.animationDuration = (3 + Math.random()*3) + "s";
+    s.style.fontSize = (14 + Math.random()*18) + "px";
+    if (heartsContainer) heartsContainer.appendChild(s);
+    setTimeout(() => s.remove(), 7000);
+  }, 350);
+</script>
+</body>
+</html>
